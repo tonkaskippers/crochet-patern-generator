@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crochet Pattern Generator</title>
+  <meta name="description" content="Generate printable crochet patterns by project, size, difficulty and number of colors.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M6 12c6 2 14 2 20 0M5 18c7 3 15 3 22 0M10 6c3 7 4 15 1 22M20 5c-2 8-1 15 3 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M26 26l4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <div>
+        <h1>Crochet Pattern Generator</h1>
+        <p class="tagline">Pick a project, size, difficulty and colors — get a complete, printable pattern.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="controls" aria-label="Pattern settings">
+      <form id="settings" autocomplete="off">
+        <fieldset>
+          <legend>Project</legend>
+          <select id="project" name="project" aria-label="Project type"></select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Size</legend>
+          <div id="sizes" class="chips" role="radiogroup" aria-label="Size"></div>
+          <div id="custom-size" class="custom-size" hidden>
+            <label>Width <input type="number" id="customW" min="2" max="300" step="0.5" inputmode="decimal"></label>
+            <span class="times">×</span>
+            <label>Length <input type="number" id="customH" min="2" max="300" step="0.5" inputmode="decimal"></label>
+          </div>
+          <div class="seg small" role="radiogroup" aria-label="Units">
+            <label><input type="radio" name="units" value="in" checked><span>inches</span></label>
+            <label><input type="radio" name="units" value="cm"><span>cm</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Difficulty</legend>
+          <div class="seg levels" role="radiogroup" aria-label="Difficulty">
+            <label><input type="radio" name="level" value="beginner" checked><span>Beginner</span></label>
+            <label><input type="radio" name="level" value="easy"><span>Easy</span></label>
+            <label><input type="radio" name="level" value="intermediate"><span>Intermediate</span></label>
+            <label><input type="radio" name="level" value="advanced"><span>Advanced</span></label>
+          </div>
+          <p id="level-hint" class="hint"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Colors <output id="colors-out" for="colors">3</output></legend>
+          <input type="range" id="colors" name="colors" min="1" max="8" value="3" aria-label="Number of colors">
+          <div id="swatches" class="swatches"></div>
+          <div class="row">
+            <select id="palette" aria-label="Palette"></select>
+            <button type="button" id="shuffle-palette" class="btn ghost" title="Shuffle the color order">Shuffle</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Yarn &amp; technique</legend>
+          <label class="field">Yarn weight <select id="yarn"></select></label>
+          <label class="field">Technique <select id="technique"></select></label>
+          <label class="field" id="stitch-field">Stitch pattern <select id="stitch"></select></label>
+          <div class="seg small" role="radiogroup" aria-label="Terminology">
+            <label><input type="radio" name="terms" value="us" checked><span>US terms</span></label>
+            <label><input type="radio" name="terms" value="uk"><span>UK terms</span></label>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button type="button" id="new-design" class="btn primary">✨ New design</button>
+          <div class="row">
+            <button type="button" id="print" class="btn">Print / PDF</button>
+            <button type="button" id="copy" class="btn">Copy text</button>
+          </div>
+          <p class="seed">Design #<span id="seed"></span> · <a href="#" id="share">copy link</a></p>
+        </div>
+      </form>
+    </aside>
+
+    <article id="pattern" class="pattern" aria-live="polite"></article>
+  </main>
+
+  <footer class="site-footer">
+    Yardage and gauge are estimates — always crochet a gauge swatch and buy an extra skein of each color.
+  </footer>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <script src="generator.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
