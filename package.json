@@ -1,0 +1,11 @@
+{
+  "name": "crochet-pattern-generator",
+  "version": "1.0.0",
+  "description": "Generate crochet patterns by project, size, difficulty and number of colors.",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "npx --yes serve ."
+  },
+  "license": "MIT"
+}
