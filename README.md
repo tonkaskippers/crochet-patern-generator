@@ -55,3 +55,10 @@ finished sizes, tapestry rows (≤ 2 colors each), C2C block coverage and US→U
 - `index.html`, `styles.css` – page and styles (light/dark and print layouts)
 
 Yardage and gauge are estimates. Crochet a gauge swatch, and buy an extra skein of each color.
+
+## Publishing on GitHub Pages
+
+`.github/workflows/pages.yml` runs the tests and publishes the site on every push to `main`.
+One-time setup: in the repository go to **Settings → Pages** and set **Source** to
+**GitHub Actions**. The site will then be at
+`https://tonkaskippers.github.io/crochet-patern-generator/`.
